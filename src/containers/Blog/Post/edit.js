@@ -14,22 +14,20 @@ import { asyncConnect } from 'redux-connect';
 @asyncConnect([{
   promise: ({ store: { dispatch, getState } }) => {
     const promises = [];
-    if (!isLoaded(getState())) {
-      promises.push(dispatch(load()));
-    }
+    // if (!isLoaded(getState())) {
+    // }
+    promises.push(dispatch(load(getState().edit.id)));
     return Promise.all(promises);
   }
 }])
 
 @connect(
-    state => ({edit_: state.edit}),
-    dispatch => bindActionCreators({load}, dispatch))
+    state => ({edit_: state.edit}))
 
 class EditPost extends Component {
   static propTypes = {
     params: PropTypes.object.isRequired,
-    load: PropTypes.func.isRequired,
-    edit_: PropTypes.object
+    edit_: PropTypes.object,
   }
   constructor(props){
     super(props);
@@ -48,12 +46,8 @@ class EditPost extends Component {
     }).then((res)=>{
       browserHistory.push('/blog');
     }, (err)=> {
-      alert(err);
+      console.log(err);
     })
-  }
-  componentWillMount(){
-    const {load} = this.props;
-    load(this.props.params.id);
   }
   render() {
     const {edit_} = this.props;
