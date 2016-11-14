@@ -104,7 +104,7 @@ var webpackConfig = module.exports = {
       __DEVTOOLS__: true,  // <-------- DISABLE redux-devtools HERE
       __DLLS__: process.env.WEBPACK_DLLS === '1',
       'process.env':{
-        APIHOST: JSON.stringify('http://localhost'),
+        APIHOST: JSON.stringify('http://rizkiandrianto.com'),
         APIPORT: JSON.stringify('3009'),
       }
     }),

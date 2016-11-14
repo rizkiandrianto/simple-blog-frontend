@@ -36,5 +36,3 @@ module.exports = Object.assign({
     }
   }
 }, environment);
-
-console.log('API HOST = ' + process.env.APIHOST)
